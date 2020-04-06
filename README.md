@@ -128,7 +128,7 @@ Core Java Concepts
             modules. This way, instead of high-level modules depending on low-level modules, both will
             depend on abstractions.
 
-
+        Reference : https://www.baeldung.com/solid-principles
 
 
 
