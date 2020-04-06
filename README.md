@@ -99,7 +99,7 @@ Core Java Concepts
         boolean : false
 
 
-   All the objects have null as there default value like :
+        All the objects have null as there default value like :
 
         Integer i;     // null as default
         Long l;
