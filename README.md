@@ -69,6 +69,13 @@ Core Java Concepts
    All the objects have null as there default value like :
 
         Integer i;     // null as default
+        Long l;
+        Double d;
+        Float f;
+        Boolean bool;
+        Short sh;
+        Byte by
+
 
 
 
