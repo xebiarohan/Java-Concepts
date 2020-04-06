@@ -109,6 +109,24 @@ Core Java Concepts
         Short sh;
         Byte by;
 
+5 SOLID principles
+
+        Single Responsibility : A class should have a sigle responsibility and it should have
+        only one reason to change.
+            Advantage: Easy to test, better code readability,Lower coupling
+
+        Open/Close principle : A class should be open for extension but closed for mmmodification
+
+        Liskov substitution : If class A is a subtype of class B then we should be able to replace
+            class B with class A without any disruption in the behaviour of the program.
+
+        Interface segregation : Larger interfaces should be split into smaller ones. By doing so, we can
+            ensure that implementing classes only need to be concerned about the methods that are of
+            interest to them.
+
+        Dependency Injection : The principle of Dependency Inversion refers to the decoupling of software
+            modules. This way, instead of high-level modules depending on low-level modules, both will
+            depend on abstractions.
 
 
 
