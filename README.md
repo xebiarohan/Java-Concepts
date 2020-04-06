@@ -54,5 +54,23 @@ Core Java Concepts
         serialized object.
 
 
+4  Default values
+
+        byte : 0
+        short : 0
+        int : 0
+        long : 0
+        float : 0.0f
+        double : 0.0d
+        String : null
+        boolean : false
+
+
+   All the objects have null as there default value like :
+
+        Integer i;     // null as default
+
+
+
 
 
