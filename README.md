@@ -78,6 +78,15 @@ Core Java Concepts
         serialized object.
 
 
+3. Sorting Algorithms
+
+        Selection sort : O(n^2)
+        Bubble sort : O(n^2)
+        Insertion sort : O(n^2)
+        Quick sort : O(nlog(n))
+        Merge sort : O(nlog(n))
+        Heap sort : O(nlog(n))
+
 4  Default values
 
         byte : 0
