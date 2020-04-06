@@ -74,7 +74,7 @@ Core Java Concepts
         Float f;
         Boolean bool;
         Short sh;
-        Byte by
+        Byte by;
 
 
 
