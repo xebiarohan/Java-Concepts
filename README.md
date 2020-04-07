@@ -165,3 +165,9 @@ Core Java Concepts
          We don’t need to make any code changes at client side for using Comparable, Arrays.sort()
          or Collection.sort() methods automatically uses the compareTo() method of the class. For
          Comparator, client needs to provide the Comparator class to use in compare() method.
+
+
+7. Design Patterns
+
+        - Builder Pattern
+            Used in POJO classes for easy object creation
