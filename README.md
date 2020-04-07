@@ -131,4 +131,37 @@ Core Java Concepts
         Reference : https://www.baeldung.com/solid-principles
 
 
+6. Comparator and Comparable
 
+        We can sort primitive type array using Arrays.sort() method eg :
+           int[] intArr = {5,9,1,10};
+           Arrays.sort(intArr);
+
+        We can sort Wrapper class using compareTo methods.
+            String str1 = "alpha";
+            String str2 = "beta";
+
+            int output = str1.compareTo(str2);  // value of output can be 1,0,-1
+
+        For custom class we have to implement Comparable interface and implement compareTo
+        method.
+
+        If for some reason we want to sort our class on different properties then we use
+        comparator. Its an functional interface. we can merge multiple sortings like :
+
+            Comparator<Employee> comparing = Comparator
+                            .comparing(Employee::getAge)
+                            .thenComparing(Employee::getDepartment)
+                            .reversed();
+
+         Differences :
+
+         Comparable interface can be used to provide single way of sorting whereas Comparator
+         interface is used to provide different ways of sorting.
+         For using Comparable, Class needs to implement it whereas for using Comparator we don’t
+         need to make any change in the class.
+         Comparable interface is in java.lang package whereas Comparator interface is present in
+         java.util package.
+         We don’t need to make any code changes at client side for using Comparable, Arrays.sort()
+         or Collection.sort() methods automatically uses the compareTo() method of the class. For
+         Comparator, client needs to provide the Comparator class to use in compare() method.
