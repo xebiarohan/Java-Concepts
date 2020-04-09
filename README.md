@@ -131,7 +131,7 @@ Core Java Concepts
         Reference : https://www.baeldung.com/solid-principles
 
 
-6. Comparator and Comparable
+6 Comparator and Comparable
 
         We can sort primitive type array using Arrays.sort() method eg :
            int[] intArr = {5,9,1,10};
@@ -167,7 +167,135 @@ Core Java Concepts
          Comparator, client needs to provide the Comparator class to use in compare() method.
 
 
-7. Design Patterns
+7 Design Patterns
 
         - Builder Pattern
             Used in POJO classes for easy object creation
+
+
+8 Generics
+
+        “Java Generics are a language feature that allows for definition and use of generic
+         types and methods.”
+
+         Generics add type safety at compile time.
+
+         It helps to make Collection Object homogeneous
+
+         Saves from ClassCastException
+
+         Type Erasure : It means all the extra information added using generics will be removed
+         at compile time during byte code generation. It is also required for backward compatibility.
+
+        A class is Generic if it declares 1 or more type parameter like
+
+                public class GenericClass<T,E> {
+                    private T key;
+                    private E value;
+                }
+
+        Here generic variables in class name is equal to the variables type parameter declared
+        in class (T and E).
+
+        Now we can use this class as
+            GenericClass<Integer,Integer> integers = new GenericClass();
+            GenericClass<String,Integer> strings = new GenericClass();
+
+        Same rules apply for the interface as well
+
+            public interface GenericInterface<T,E> {
+                T  firstMethod();
+                E  secondMethod();
+            }
+
+        We can define generic methods inside non-generic class and the scope of type variable is
+        inside the method only.
+
+             public <T,E> void genericMethod(T key,E value) {
+                    System.out.println(key);
+                    System.out.println(E);
+
+                }
+
+        Type parameter should be defined in front of return type of method if generic method is
+        not a part of generic class.
+
+        They can static as well as non-static methods
+
+        Generic constructor follows the same rule as other methods.They can come inside Generic class
+        or can be in any other class also.
+
+            public class ClassWithGenericConstructor<T> {
+                private T key;
+                private T value;
+
+                public ClassWithGenericConstructor(T key,T value) {
+                    this.key = key;
+                    this.value = value;
+                }
+            }
+
+
+            public class ClassWithGenericConstructor {
+                public <T> ClassWithGenericConstructor(T key,T value) {
+                    System.out.println(key);
+                }
+            }
+
+        Generics in Array :
+        Array preserves their type information means it will throw error if we add different type
+        of data into it and Generics use type erasure, which is contradictory So we cannot instantiate
+        a generic array in Java
+
+            public class GenericArray<T> {
+                // this one is fine
+                public T[] notYetInstantiatedArray;
+
+                // causes compiler error; Cannot create a generic array of T
+                public T[] array = new T[5];
+            }
+
+        WildCards in Generics
+        WildCards defines unknown data types in Generics, Using it with super and extends is used
+        to restrict the types used in Generic class like
+
+
+            declarations :
+            Collection<?> coll = new ArrayList<String>();
+            List<? extends Number> list = new ArrayList<Long>();
+            Pair<String,?> pair = new Pair<String,Integer>();
+
+
+        WildCards are of 2 types bounded and unbounded
+
+        Unbounded in which we can add any type like :
+            Collection<?> coll = new ArrayList<String>();
+
+        In bounded we restrict the type which we can use using extends and super.
+            In extends we can use class which extends the given class like
+
+                List<? extends Number> list = new ArrayList<Long>();
+
+            here we can use any class which extends Number like Long,Integer,Double etc
+
+            In super we can use classes which is a super class is given class
+
+                 List<? super Integer> list = new ArrayList<Number>();
+            here we can use any class which is a super class of Integer
+
+
+        what is not allowed in Generics
+
+
+        Static fields of type is not allowed
+             private static T member; //This is not allowed
+
+        Cant create instance of type parameter directly
+            new  T();   // not allowed
+
+        Not compatible with primitive types
+            List<int> ids = new ArrayList<>();    //Not allowed
+
+        Generic Exception class is not allowed
+            public class GenericException<T> extends Exception {}
+
