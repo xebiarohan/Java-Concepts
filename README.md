@@ -356,3 +356,15 @@ Core Java Concepts
     Phantom reference :
         The referent is never accessible directly through the API and this is why we need a reference queue
          to work with this type of references.
+
+
+Important Question :
+    Difference between super and super()
+    super is used to call the parent class methods and variables like
+        System.out.println(super.x);   // it will print value of x which is defined in super class
+        super.method();
+    for interface default variables and methods we need to add Interface name as well like :
+        InterfaceName.super.variableName;
+        InterfaceName.super.methodName();
+     super() is used to call the parent class constructor. it is used in child class  constructor
+     as a mandatory first line.
