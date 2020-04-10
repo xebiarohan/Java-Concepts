@@ -199,6 +199,9 @@ Core Java Concepts
                 Enum class : Java enum ensures that enum value is instantiated only once in
                              a Java program
 
+        - Template
+            The Template Method pattern is known as a behavioural pattern. it is used to manage
+            algorithm and relationship between objects.
 
 8 Generics
 
