@@ -330,6 +330,7 @@ Core Java Concepts
             public class GenericException<T> extends Exception {}
 
 9 Early and late binding
+
         Binding is the association of method call to the method defination. It can happen at
         compile time as well as at run time.
         Late binding gave us the flexibility of  changing algorithm at run-time
@@ -359,6 +360,7 @@ Core Java Concepts
 
 
 Important Question :
+
     Difference between super and super()
     super is used to call the parent class methods and variables like
         System.out.println(super.x);   // it will print value of x which is defined in super class
