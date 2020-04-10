@@ -172,6 +172,33 @@ Core Java Concepts
         - Builder Pattern
             Used in POJO classes for easy object creation
 
+        - Factory Pattern
+            Its a creational pattern. In this we create object based on some condition
+            and without exposing the creational logic to client
+
+        - Strategy Pattern
+            Its a behavioral design pattern
+            In Strategy pattern, a class behavior or its algorithm can be changed at run time.
+
+        Difference between Strategy and Factory
+            Factory is creational design pattern, it is used to cleate a class object. based on
+            input value we decides which object will get created. Strategy design pattern is a
+            behaviour design pattern in which we decide algorithm at run time. We can use factory and
+            strategy togather.
+
+        - Singleton
+            Singleton design pattern ensures that there will be only 1 instance of the class
+            in the java virtual machine
+            Ways to create Singleton class
+                Eager loaded : it will create object on class initialization
+                Static block initialization : similar to  eager loaded just object is initialized
+                                               in static block for error handling
+                Lazy initialization : It will create instance when first time we call method to
+                                        get the instance.
+                ThreadSafe initialization : initialization using syncronised keyword
+                Enum class : Java enum ensures that enum value is instantiated only once in
+                             a Java program
+
 
 8 Generics
 
