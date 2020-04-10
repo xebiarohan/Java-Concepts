@@ -329,3 +329,30 @@ Core Java Concepts
         Generic Exception class is not allowed
             public class GenericException<T> extends Exception {}
 
+9 Early and late binding
+        Binding is the association of method call to the method defination. It can happen at
+        compile time as well as at run time.
+        Late binding gave us the flexibility of  changing algorithm at run-time
+        Example of early binding is simple method call, overloaded method, static, final methods
+        Examples of  late binding is overriding(run time polymorphism)
+
+10 Types of Reference in Java
+
+    Strong reference :
+        There object are not garbage collected as long as they are strongly reachable through a chain
+        of strong references. Strong reference refers to the reference from stack to the actual object in
+        heap.
+            eg : StringBuilder builder = new StringBuilder();
+
+    Weak reference :
+        These objects will surely be garbage collected when ever the next garbage collector process runs.
+            eg: WeakReference<StringBuilder> reference = new WeakReference<>(new StringBuilder());
+
+    Soft reference :
+        These objects will only be garbage collected when there is no more memory left. Java guarantees
+        that all soft refence will garbage collectedd before it throws OutOfMemoryError exception.
+            eg SoftReference<StringBuilder> reference = new SoftReference<>(new StringBuilder());
+
+    Phantom reference :
+        The referent is never accessible directly through the API and this is why we need a reference queue
+         to work with this type of references.
