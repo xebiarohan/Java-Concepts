@@ -1,7 +1,7 @@
 # Java-Concepts
 Core Java Concepts
 
-1. Primitive types
+### 1. Primitive types
 
             // 1. byte, value range from -128 to 127, 8-bit signed two's compliment integer
             byte  byteValue = -128;
@@ -29,7 +29,7 @@ Core Java Concepts
 
 
 
-3. Serialization
+### 2. Serialization
 
 
         Its a mechanism of writing the state of an object into byte code. It is mainly used
@@ -78,7 +78,7 @@ Core Java Concepts
         serialized object.
 
 
-3. Sorting Algorithms
+### 3. Sorting Algorithms
 
         Selection sort : O(n^2)
         Bubble sort : O(n^2)
@@ -87,7 +87,7 @@ Core Java Concepts
         Merge sort : O(nlog(n))
         Heap sort : O(nlog(n))
 
-4  Default values
+### 4  Default values
 
         byte : 0
         short : 0
@@ -109,7 +109,7 @@ Core Java Concepts
         Short sh;
         Byte by;
 
-5 SOLID principles
+### 5 SOLID principles
 
         Single Responsibility : A class should have a sigle responsibility and it should have
         only one reason to change.
@@ -131,7 +131,7 @@ Core Java Concepts
         Reference : https://www.baeldung.com/solid-principles
 
 
-6 Comparator and Comparable
+### 6 Comparator and Comparable
 
         We can sort primitive type array using Arrays.sort() method eg :
            int[] intArr = {5,9,1,10};
@@ -167,7 +167,7 @@ Core Java Concepts
          Comparator, client needs to provide the Comparator class to use in compare() method.
 
 
-7 Design Patterns
+### 7 Design Patterns
 
         - Builder Pattern
             Used in POJO classes for easy object creation
@@ -214,7 +214,7 @@ Core Java Concepts
             Prototype provide a mechanism to create a new object by copying from current object
             and then we can modify new object as per the requirement.
 
-8 Generics
+### 8 Generics
 
         “Java Generics are a language feature that allows for definition and use of generic
          types and methods.”
@@ -340,7 +340,7 @@ Core Java Concepts
         Generic Exception class is not allowed
             public class GenericException<T> extends Exception {}
 
-9 Early and late binding
+### 9 Early and late binding
 
         Binding is the association of method call to the method defination. It can happen at
         compile time as well as at run time.
@@ -348,7 +348,7 @@ Core Java Concepts
         Example of early binding is simple method call, overloaded method, static, final methods
         Examples of  late binding is overriding(run time polymorphism)
 
-10 Types of Reference in Java
+### 10 Types of Reference in Java
 
     Strong reference :
         There object are not garbage collected as long as they are strongly reachable through a chain
