@@ -17,5 +17,8 @@ public class ShapeExecutor {
         shapes.add(new ShapeAdapter(new Parallelogram()));
 
         shapes.stream().forEach(shape -> shape.draw());
+
+        Rectangle rectangle = new Rectangle();
+
     }
 }
