@@ -203,6 +203,11 @@ Core Java Concepts
             The Template Method pattern is known as a behavioural pattern. it is used to manage
             algorithm and relationship between objects.
 
+        - Adapter
+            Adapter pattern works as a bridge between two incompatible interfaces. This type of
+            design pattern comes under structural pattern as this pattern combines the capability of
+            two independent interfaces.
+
 8 Generics
 
         “Java Generics are a language feature that allows for definition and use of generic
@@ -370,3 +375,9 @@ Important Question :
         InterfaceName.super.methodName();
      super() is used to call the parent class constructor. it is used in child class  constructor
      as a mandatory first line.
+    You want to create a object of the current class, but there may be a couple of properties that
+    the current class is acquiring from the parent class through inheritance for which we need to
+    first have those values initialised and created in the parent class object and super() in this
+    case does it for the current class by calling the constructor of the parent class.
+    This makes sure that the current object creation is done consistently and which is why we need
+    to have it as the first statement
