@@ -208,6 +208,12 @@ Core Java Concepts
             design pattern comes under structural pattern as this pattern combines the capability of
             two independent interfaces.
 
+        - Prototype
+            Its a creational design pattern. It is used when the creation of new object is a costly
+            affair and time consuming and we already have a similar object.
+            Prototype provide a mechanism to create a new object by copying from current object
+            and then we can modify new object as per the requirement.
+
 8 Generics
 
         “Java Generics are a language feature that allows for definition and use of generic
