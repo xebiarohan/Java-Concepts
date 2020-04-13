@@ -214,6 +214,11 @@ Core Java Concepts
             Prototype provide a mechanism to create a new object by copying from current object
             and then we can modify new object as per the requirement.
 
+        - Abstract factory
+            An abstract factory pattern is also called the Factory of Factories or Kit. In other words,
+            this pattern has a super-factory that creates other factories This design pattern comes under
+            the creational pattern.
+
 ### 8 Generics
 
         “Java Generics are a language feature that allows for definition and use of generic
