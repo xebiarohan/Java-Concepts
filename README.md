@@ -375,7 +375,7 @@ Core Java Concepts
          to work with this type of references.
 
 
-Important Question :
+### 11  super() and super
 
     Difference between super and super()
     super is used to call the parent class methods and variables like
@@ -392,3 +392,15 @@ Important Question :
     case does it for the current class by calling the constructor of the parent class.
     This makes sure that the current object creation is done consistently and which is why we need
     to have it as the first statement
+
+
+### 12 instanceOf
+
+    The java instanceof operator is used to test whether the object is an instance of the specified
+    type (class or subclass or interface).
+
+    instanceOf is mostly used for downcasting like :
+            if(p instanceof B){
+            B b=(B)p;      //Downcasting
+            b.b();
+            }
