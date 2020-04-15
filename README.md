@@ -4,9 +4,8 @@ Core Java Concepts
 ### 1. Primitive types
 
             // 1. byte, value range from -128 to 127, 8-bit signed two's compliment integer
-            ```
             byte  byteValue = -128;
-            ```
+            
             //2. short, value range from -32768 to 32767, 16-bit signed two's compliment integer
             short shortValue = 100;
 
