@@ -400,7 +400,7 @@ Core Java Concepts
     type (class or subclass or interface).
 
     instanceOf is mostly used for downcasting like :
-            if(p instanceof B){
+            `if(p instanceof B){
             B b=(B)p;      //Downcasting
             b.b();
-            }
+            }`
