@@ -396,11 +396,60 @@ Core Java Concepts
 
 ### 12 instanceOf
 
-    The java instanceof operator is used to test whether the object is an instance of the specified
-    type (class or subclass or interface).
+  The java instanceof operator is used to test whether the object is an instance of the specified
+  type (class or subclass or interface).
 
-    instanceOf is mostly used for downcasting like :
-            `if(p instanceof B){
+  instanceOf is mostly used for downcasting like :
+
+            if(p instanceof B){
             B b=(B)p;      //Downcasting
             b.b();
-            }`
+            }
+
+### 13 Equals and HashCode
+  Java equals() and hashCode() methods are present in Object class. So every java class gets the
+  default implementation of equals() and hashCode().
+
+        public boolean equals(Object obj) {
+                return (this == obj);
+            }
+
+
+        @HotSpotIntrinsicCandidate
+        public native int hashCode();
+
+
+  If two objects are equal according to equals() method, then their hash code must be same.
+
+  If two objects are unequal according to equals() method, their hash code are not required to be different.
+
+  Java hashCode() and equals() method are used in Hash table based implementations in java for storing and
+  retrieving data
+
+  Use same properties in both equals() and hashCode() method implementations, so that their contract doesn’t
+  violate when any properties is updated.
+
+          @Override
+            public boolean equals(Object o) {
+                if (this == o) return true;
+                if (o == null || getClass() != o.getClass()) return false;
+                EqualsAndHashCodeExample that = (EqualsAndHashCodeExample) o;
+                return Objects.equals(firstName, that.firstName) &&
+                        Objects.equals(lastName, that.lastName) &&
+                        Objects.equals(age, that.age);
+            }
+
+            @Override
+            public int hashCode() {
+
+                return Objects.hash(firstName, lastName, age);
+            }
+
+  First identify the “Bucket” to use using the “key” hash code.
+  If there are no objects present in the bucket with same hash code, then add the object for put operation and return null for get operation.
+  If there are other objects in the bucket with same hash code, then “key” equals method comes into play.
+  If equals() return true and it’s a put operation, then object value is overridden.
+  If equals() return false and it’s a put operation, then new entry is added to the bucket.
+  If equals() return true and it’s a get operation, then object value is returned.
+  If equals() return false and it’s a get operation, then null is returned.
+
