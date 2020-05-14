@@ -78,7 +78,7 @@ Core Java Concepts
         serialized object.
 
 
-### 3. Sorting Algorithms
+### 3 Sorting Algorithms
 
         Selection sort : O(n^2)
         Bubble sort : O(n^2)
