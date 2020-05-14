@@ -453,3 +453,120 @@ Core Java Concepts
   If equals() return true and it’s a get operation, then object value is returned.
   If equals() return false and it’s a get operation, then null is returned.
 
+
+### 14. Does Java "pass-by-reference" or "pass-by-value"?
+
+So the answer is Java is pass by value. But the question is which value and that depends
+
+It depends upon the type of parameter like :
+
+#### Primitive type variable
+If we are passing the primitive type parameter like int,float,boolean etc. In this case parameter value
+itself is passed 
+example :
+
+```java
+    public static void main(String[] args) {
+        int a =10;
+        changePrimitiveType(a);
+        System.out.println(a);   //10
+        
+    }   
+     
+     
+    public static void changePrimitiveType(int num) {
+        num = 20;
+    }
+
+```
+
+So here the value of a will be 10. because we pass a value in changePrimitiveType method
+not reference of a. So the change in other methods will not impact the original value.
+
+
+#### Primitive type array
+
+```java
+    public static void main(String[] args) {
+        int[] arr  = {1,2,3,4};
+        changeIntArrayValue(arr);   
+        sysyem.out.println(arr[0]);  //20
+    }
+     
+     public static void changeValue(int[] array) {
+         array[0]=20;
+    }
+```
+
+In case of array we pass reference value. So the array in main method and changeValue method is same.
+Any change in one method will be reflected in other.
+
+but there is a catch. If I change the array itself with new array like
+
+```java
+    public static void main(String[] args) {
+        int[] arr  = {1,2,3,4};
+        changeIntArrayValue(arr);   
+        sysyem.out.println(arr[0]);  //1
+    }
+    
+    public static void changeValue(int[] arr) {
+         arr = new int[3];
+         arr[0] = 20;
+    }
+```
+
+In this case the value of arr[0] will remain 1. Why ?
+
+Because in changeMethod we created a new array which is pointing to some other memory location
+and here arr object will work as a local variable. So it will not change value in main method.
+
+
+#### Collections
+
+Collection will work same as any other Object
+
+```java
+    public static void main(String[] args) {
+        List<Integer> intList = new ArrayList<>();
+        intList.add(1);
+        changeList(intList);
+        System.out.println(intList);  // [1,5]
+    }
+    
+    public static void changeList(List<Integer> integers) {
+        System.out.println(integers.size());
+        integers.add(5);
+    }
+
+```
+
+#### Custom class also works same as other Objects
+
+```java
+    public static void main(String[] args){
+              Person person = new Person("Rohan");
+              setNewName(person);
+              System.out.println(person.getName());   //Vishu
+      
+              createNewName(person);
+              person.getName();
+              System.out.println(person.getName());   //Vishu
+    }
+    
+    public static void setNewName(Person person) {
+        Person p = person;
+        p.setName("Vishu");
+    }
+
+    public static void createNewName(Person person) {
+        person = new Person("Rohan");
+    }
+
+```
+
+Here first it will print "Vishu" because Object in main and setNewName method are same (passing reference value).
+
+Second time also it will print "Vishu" because in createNewName method we are creating new Person Object. So the person variable
+is now becomes local variable in createNewName. It will not change person object in main method. So name remain same in
+main method i.e. "Vishu".
