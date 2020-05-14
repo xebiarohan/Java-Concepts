@@ -3,79 +3,95 @@ Core Java Concepts
 
 ### 1. Primitive types
 
-            // 1. byte, value range from -128 to 127, 8-bit signed two's compliment integer
-            byte  byteValue = -128;
+- byte, value range from -128 to 127, 8-bit signed two's compliment integer
+```java
+byte  byteValue = -128;
+```            
             
-            //2. short, value range from -32768 to 32767, 16-bit signed two's compliment integer
-            short shortValue = 100;
+- short, value range from -32768 to 32767, 16-bit signed two's compliment integer
+```java
+short shortValue = 100;
+```            
 
-            // int, value range from 2^32 to 2^32 -1 , 32-bit signed two's compliment integer
-            int intValue = 1;
+- int, value range from 2^32 to 2^32 -1 , 32-bit signed two's compliment integer
+```java            
+int intValue = 1;
+```
 
-            //long, value range from 2^64 to 2^64-1, 64-bit signed two's compliment integer
-            long longValue = 123123;
+- long, value range from 2^64 to 2^64-1, 64-bit signed two's compliment integer
+```java
+long longValue = 123123;
+```
 
-            //float, 32-bit floating point
-            float floatValue = 1.1f;
+- float, 32-bit floating point
+```java
+float floatValue = 1.1f;
+```
 
-            //double, 64-bit floating point, default for decimal values
-            double doubleValue = 2.222222222221231231;
+- double, 64-bit floating point, default for decimal values
+```java
+ double doubleValue = 2.222222222221231231;
+```
 
-            //boolean , 1-bit, can have either true or false
-            boolean booleanValue = true;
+- boolean , 1-bit, can have either true or false
+```java
+boolean booleanValue = true;
+```
 
-            //char is single 16-bit unicode Character
+- char is single 16-bit unicode Character
+```java
             char charValue = 'A';
+```
 
 
 
 ### 2. Serialization
 
 
-        Its a mechanism of writing the state of an object into byte code. It is mainly used
-        in hibernate, JPA.
+Its a mechanism of writing the state of an object into byte code. It is mainly used
+in hibernate, JPA.
 
-        The reverse operation of serialization is called deserialization in which byte-stream
-        is converted into an object.
+The reverse operation of serialization is called deserialization in which byte-stream
+is converted into an object.
 
-        It is independent of platform, means we can serialize an object in 1 platform and can
-        deserialize it into another platform
+It is independent of platform, means we can serialize an object in 1 platform and can
+deserialize it into another platform
 
-        Use case : It is used when we want to send an object over a network
+Use case : It is used when we want to send an object over a network
 
-        Class must implement Serializable interface for serialization mechanism.
+Class must implement Serializable interface for serialization mechanism.
 
-        Serializable is a marker interface
+Serializable is a marker interface
 
-        ObjectOutputStream class is used to convert primitive types and Java Objects into byte-
-        stream
+ObjectOutputStream class is used to convert primitive types and Java Objects into byte-
+stream
 
-        ObjectInputStream class is used to convert Byte-stream into primitive types and object
+ObjectInputStream class is used to convert Byte-stream into primitive types and object
 
-        If a parent class is implementing Serializable interface then then its child class
-        automatically inherits those properties. no need to separately add serializable
-        interface. (IS-A relationship).
+If a parent class is implementing Serializable interface then then its child class
+automatically inherits those properties. no need to separately add serializable
+interface. (IS-A relationship).
 
-        If a class has reference of other class then all the reference must be serializable
-        otherwise NotSerializableException will come. (HAS-A relationship)
+If a class has reference of other class then all the reference must be serializable
+otherwise NotSerializableException will come. (HAS-A relationship)
 
-        Static members of the class will not be serialized because static is a part of class
-        not object.
+Static members of the class will not be serialized because static is a part of class
+not object.
 
-        In case of Array or collection, all the elements of those must be serializable.
+In case of Array or collection, all the elements of those must be serializable.
 
-        Externalizable interface provide mechanism to converting the state of the object
-        into compact byte-stream
+Externalizable interface provide mechanism to converting the state of the object
+into compact byte-stream
 
-        Externalizable is not a marker interface. gives 2 method writeExternal and
-        readExternal
+Externalizable is not a marker interface. gives 2 method writeExternal and
+readExternal
 
-        If we want to restrict any member from serialization process. we can do it using
-        transient keyword. So on deserialization process it will give default value.
+If we want to restrict any member from serialization process. we can do it using
+transient keyword. So on deserialization process it will give default value.
 
-        The serialization process at runtime associates an id with each Serializable class
-        which is known as SerialVersionUID. It is used to verify the sender and receiver of the
-        serialized object.
+The serialization process at runtime associates an id with each Serializable class
+which is known as SerialVersionUID. It is used to verify the sender and receiver of the
+serialized object.
 
 
 ### 3 Sorting Algorithms
@@ -89,135 +105,148 @@ Core Java Concepts
 
 ### 4  Default values
 
-        byte : 0
-        short : 0
-        int : 0
-        long : 0
-        float : 0.0f
-        double : 0.0d
-        String : null
-        boolean : false
+```java
+byte : 0
+short : 0
+int : 0
+long : 0
+float : 0.0f
+double : 0.0d
+String : null
+boolean : false
 
+```
 
-        All the objects have null as there default value like :
+All the objects have null as there default value like :
 
-        Integer i;     // null as default
-        Long l;
-        Double d;
-        Float f;
-        Boolean bool;
-        Short sh;
-        Byte by;
+```java
+Integer i;     // null as default
+Long l;
+Double d;
+Float f;
+Boolean bool;
+Short sh;
+Byte by;
+```
 
 ### 5 SOLID principles
 
-        Single Responsibility : A class should have a sigle responsibility and it should have
-        only one reason to change.
-            Advantage: Easy to test, better code readability,Lower coupling
+Single Responsibility : A class should have a sigle responsibility and it should have
+only one reason to change.   
+    Advantage: Easy to test, better code readability,Lower coupling
 
-        Open/Close principle : A class should be open for extension but closed for mmmodification
+Open/Close principle : A class should be open for extension but closed for mmmodification
 
-        Liskov substitution : If class A is a subtype of class B then we should be able to replace
-            class B with class A without any disruption in the behaviour of the program.
+Liskov substitution : If class A is a subtype of class B then we should be able to replace
+    class B with class A without any disruption in the behaviour of the program.
 
-        Interface segregation : Larger interfaces should be split into smaller ones. By doing so, we can
-            ensure that implementing classes only need to be concerned about the methods that are of
-            interest to them.
+Interface segregation : Larger interfaces should be split into smaller ones. By doing so, we can
+    ensure that implementing classes only need to be concerned about the methods that are of
+    interest to them.
 
-        Dependency Injection : The principle of Dependency Inversion refers to the decoupling of software
-            modules. This way, instead of high-level modules depending on low-level modules, both will
-            depend on abstractions.
+Dependency Injection : The principle of Dependency Inversion refers to the decoupling of software
+    modules. This way, instead of high-level modules depending on low-level modules, both will
+    depend on abstractions.
 
-        Reference : https://www.baeldung.com/solid-principles
+Reference : https://www.baeldung.com/solid-principles
 
 
 ### 6 Comparator and Comparable
 
-        We can sort primitive type array using Arrays.sort() method eg :
-           int[] intArr = {5,9,1,10};
-           Arrays.sort(intArr);
+We can sort primitive type array using Arrays.sort() method eg :
+```java
+int[] intArr = {5,9,1,10};
+Arrays.sort(intArr);
+```           
 
-        We can sort Wrapper class using compareTo methods.
-            String str1 = "alpha";
-            String str2 = "beta";
+We can sort Wrapper class using compareTo methods.
+```java
+String str1 = "alpha";
+String str2 = "beta";
 
-            int output = str1.compareTo(str2);  // value of output can be 1,0,-1
+int output = str1.compareTo(str2);  // value of output can be 1,0,-1
+```
 
-        For custom class we have to implement Comparable interface and implement compareTo
-        method.
+For custom class we have to implement Comparable interface and implement compareTo
+method.
 
-        If for some reason we want to sort our class on different properties then we use
-        comparator. Its an functional interface. we can merge multiple sortings like :
+If for some reason we want to sort our class on different properties then we use
+comparator. Its an functional interface. we can merge multiple sortings like :
 
-            Comparator<Employee> comparing = Comparator
-                            .comparing(Employee::getAge)
-                            .thenComparing(Employee::getDepartment)
-                            .reversed();
+```java
+Comparator<Employee> comparing = Comparator
+                .comparing(Employee::getAge)
+                .thenComparing(Employee::getDepartment)
+                .reversed();
+```
 
-         Differences :
+ Differences :
 
-         Comparable interface can be used to provide single way of sorting whereas Comparator
-         interface is used to provide different ways of sorting.
-         For using Comparable, Class needs to implement it whereas for using Comparator we don’t
-         need to make any change in the class.
-         Comparable interface is in java.lang package whereas Comparator interface is present in
-         java.util package.
-         We don’t need to make any code changes at client side for using Comparable, Arrays.sort()
-         or Collection.sort() methods automatically uses the compareTo() method of the class. For
-         Comparator, client needs to provide the Comparator class to use in compare() method.
+ Comparable interface can be used to provide single way of sorting whereas Comparator
+ interface is used to provide different ways of sorting.
+ 
+ For using Comparable, Class needs to implement it whereas for using Comparator we don’t
+ need to make any change in the class.
+ 
+ Comparable interface is in java.lang package whereas Comparator interface is present in
+ java.util package.
+ 
+ We don’t need to make any code changes at client side for using Comparable, Arrays.sort()
+ or Collection.sort() methods automatically uses the compareTo() method of the class. For
+ Comparator, client needs to provide the Comparator class to use in compare() method.
 
 
 ### 7 Design Patterns
 
-        - Builder Pattern
-            Used in POJO classes for easy object creation
+- Builder Pattern
+    Used in POJO classes for easy object creation
 
-        - Factory Pattern
-            Its a creational pattern. In this we create object based on some condition
-            and without exposing the creational logic to client
+- Factory Pattern
+    Its a creational pattern. In this we create object based on some condition
+    and without exposing the creational logic to client
 
-        - Strategy Pattern
-            Its a behavioral design pattern
-            In Strategy pattern, a class behavior or its algorithm can be changed at run time.
+- Strategy Pattern
+    Its a behavioral design pattern
+    In Strategy pattern, a class behavior or its algorithm can be changed at run time.
 
-        Difference between Strategy and Factory
-            Factory is creational design pattern, it is used to cleate a class object. based on
-            input value we decides which object will get created. Strategy design pattern is a
-            behaviour design pattern in which we decide algorithm at run time. We can use factory and
-            strategy togather.
+Difference between Strategy and Factory
+    Factory is creational design pattern, it is used to cleate a class object. based on
+    input value we decides which object will get created. Strategy design pattern is a
+    behaviour design pattern in which we decide algorithm at run time. We can use factory and
+    strategy togather.
 
-        - Singleton
-            Singleton design pattern ensures that there will be only 1 instance of the class
-            in the java virtual machine
-            Ways to create Singleton class
-                Eager loaded : it will create object on class initialization
-                Static block initialization : similar to  eager loaded just object is initialized
-                                               in static block for error handling
-                Lazy initialization : It will create instance when first time we call method to
-                                        get the instance.
-                ThreadSafe initialization : initialization using syncronised keyword
-                Enum class : Java enum ensures that enum value is instantiated only once in
-                             a Java program
+- Singleton
+    Singleton design pattern ensures that there will be only 1 instance of the class
+    in the java virtual machine
+    Ways to create Singleton class
+        Eager loaded : it will create object on class initialization
+        Static block initialization : similar to  eager loaded just object is initialized
+                                       in static block for error handling
+        Lazy initialization : It will create instance when first time we call method to
+                                get the instance.
+        ThreadSafe initialization : initialization using syncronised keyword
+        Enum class : Java enum ensures that enum value is instantiated only once in
+                     a Java program
 
-        - Template
-            The Template Method pattern is known as a behavioural pattern. it is used to manage
-            algorithm and relationship between objects.
+- Template
+    The Template Method pattern is known as a behavioural pattern. it is used to manage
+    algorithm and relationship between objects.
 
-        - Adapter
-            Adapter pattern works as a bridge between two incompatible interfaces. This type of
-            design pattern comes under structural pattern as this pattern combines the capability of
-            two independent interfaces.
+- Adapter
+    Adapter pattern works as a bridge between two incompatible interfaces. This type of
+    design pattern comes under structural pattern as this pattern combines the capability of
+    two independent interfaces.
 
-        - Prototype
-            Its a creational design pattern. It is used when the creation of new object is a costly
-            affair and time consuming and we already have a similar object.
-            Prototype provide a mechanism to create a new object by copying from current object
-            and then we can modify new object as per the requirement.
+- Prototype
+    Its a creational design pattern. It is used when the creation of new object is a costly
+    affair and time consuming and we already have a similar object.
+    Prototype provide a mechanism to create a new object by copying from current object
+    and then we can modify new object as per the requirement.
 
-        - Abstract factory
-            An abstract factory pattern is also called the Factory of Factories or Kit. In other words,
-            this pattern has a super-factory that creates other factories This design pattern comes under
-            the creational pattern.
+- Abstract factory
+    An abstract factory pattern is also called the Factory of Factories or Kit. In other words,
+    this pattern has a super-factory that creates other factories This design pattern comes under
+    the creational pattern.
 
 ### 8 Generics
 
