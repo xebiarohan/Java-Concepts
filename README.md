@@ -250,237 +250,275 @@ Difference between Strategy and Factory
 
 ### 8 Generics
 
-        “Java Generics are a language feature that allows for definition and use of generic
-         types and methods.”
+“Java Generics are a language feature that allows for definition and use of generic
+types and methods.”
 
-         Generics add type safety at compile time.
+Generics add type safety at compile time.
 
-         It helps to make Collection Object homogeneous
+It helps to make Collection Object homogeneous
 
-         Saves from ClassCastException
+Saves from ClassCastException
 
-         Type Erasure : It means all the extra information added using generics will be removed
-         at compile time during byte code generation. It is also required for backward compatibility.
+Type Erasure : It means all the extra information added using generics will be removed
+at compile time during byte code generation. It is also required for backward compatibility.
 
-        A class is Generic if it declares 1 or more type parameter like
+A class is Generic if it declares 1 or more type parameter like
 
-                public class GenericClass<T,E> {
-                    private T key;
-                    private E value;
-                }
+```java
+public class GenericClass<T,E> {
+private T key;
+private E value;
+}
+```
 
-        Here generic variables in class name is equal to the variables type parameter declared
-        in class (T and E).
+Here generic variables in class name is equal to the variables type parameter declared
+in class (T and E).
 
-        Now we can use this class as
-            GenericClass<Integer,Integer> integers = new GenericClass();
-            GenericClass<String,Integer> strings = new GenericClass();
+Now we can use this class as
+```java
+GenericClass<Integer,Integer> integers = new GenericClass();
+GenericClass<String,Integer> strings = new GenericClass();
+```
 
-        Same rules apply for the interface as well
+Same rules apply for the interface as well
+```java
+public interface GenericInterface<T,E> {
+    T  firstMethod();
+    E  secondMethod();
+}
+```
 
-            public interface GenericInterface<T,E> {
-                T  firstMethod();
-                E  secondMethod();
-            }
+We can define generic methods inside non-generic class and the scope of type variable is
+inside the method only.
+```java
+ public <T,E> void genericMethod(T key,E value) {
+        System.out.println(key);
+        System.out.println(E);
 
-        We can define generic methods inside non-generic class and the scope of type variable is
-        inside the method only.
+    }
+```
 
-             public <T,E> void genericMethod(T key,E value) {
-                    System.out.println(key);
-                    System.out.println(E);
+Type parameter should be defined in front of return type of method if generic method is
+not a part of generic class.
 
-                }
+They can static as well as non-static methods
 
-        Type parameter should be defined in front of return type of method if generic method is
-        not a part of generic class.
+Generic constructor follows the same rule as other methods.They can come inside Generic class
+or can be in any other class also.
+```java
+public class ClassWithGenericConstructor<T> {
+    private T key;
+    private T value;
 
-        They can static as well as non-static methods
+    public ClassWithGenericConstructor(T key,T value) {
+        this.key = key;
+        this.value = value;
+    }
+}
 
-        Generic constructor follows the same rule as other methods.They can come inside Generic class
-        or can be in any other class also.
+public class ClassWithGenericConstructor {
+    public <T> ClassWithGenericConstructor(T key,T value) {
+        System.out.println(key);
+    }
+}
+```
 
-            public class ClassWithGenericConstructor<T> {
-                private T key;
-                private T value;
+Generics in Array :
+Array preserves their type information means it will throw error if we add different type
+of data into it and Generics use type erasure, which is contradictory So we cannot instantiate
+a generic array in Java
 
-                public ClassWithGenericConstructor(T key,T value) {
-                    this.key = key;
-                    this.value = value;
-                }
-            }
+```java
+public class GenericArray<T> {
+    // this one is fine
+    public T[] notYetInstantiatedArray;
 
+    // causes compiler error; Cannot create a generic array of T
+    public T[] array = new T[5];
+}
+```
 
-            public class ClassWithGenericConstructor {
-                public <T> ClassWithGenericConstructor(T key,T value) {
-                    System.out.println(key);
-                }
-            }
-
-        Generics in Array :
-        Array preserves their type information means it will throw error if we add different type
-        of data into it and Generics use type erasure, which is contradictory So we cannot instantiate
-        a generic array in Java
-
-            public class GenericArray<T> {
-                // this one is fine
-                public T[] notYetInstantiatedArray;
-
-                // causes compiler error; Cannot create a generic array of T
-                public T[] array = new T[5];
-            }
-
-        WildCards in Generics
-        WildCards defines unknown data types in Generics, Using it with super and extends is used
-        to restrict the types used in Generic class like
-
-
-            declarations :
-            Collection<?> coll = new ArrayList<String>();
-            List<? extends Number> list = new ArrayList<Long>();
-            Pair<String,?> pair = new Pair<String,Integer>();
-
-
-        WildCards are of 2 types bounded and unbounded
-
-        Unbounded in which we can add any type like :
-            Collection<?> coll = new ArrayList<String>();
-
-        In bounded we restrict the type which we can use using extends and super.
-            In extends we can use class which extends the given class like
-
-                List<? extends Number> list = new ArrayList<Long>();
-
-            here we can use any class which extends Number like Long,Integer,Double etc
-
-            In super we can use classes which is a super class is given class
-
-                 List<? super Integer> list = new ArrayList<Number>();
-            here we can use any class which is a super class of Integer
+WildCards in Generics
+WildCards defines unknown data types in Generics, Using it with super and extends is used
+to restrict the types used in Generic class like
 
 
-        what is not allowed in Generics
+declarations :
+```java
+Collection<?> coll = new ArrayList<String>();
+List<? extends Number> list = new ArrayList<Long>();
+Pair<String,?> pair = new Pair<String,Integer>();
+```
+
+WildCards are of 2 types bounded and unbounded
+
+Unbounded in which we can add any type like :
+```java
+Collection<?> coll = new ArrayList<String>();
+```
+
+In bounded we restrict the type which we can use using extends and super.
+In extends we can use class which extends the given class like
+```java
+List<? extends Number> list = new ArrayList<Long>();
+```
+here we can use any class which extends Number like Long,Integer,Double etc
+
+In super we can use classes which is a super class is given class
+```java
+     List<? super Integer> list = new ArrayList<Number>();
+```     
+here we can use any class which is a super class of Integer
 
 
-        Static fields of type is not allowed
-             private static T member; //This is not allowed
+what is not allowed in Generics
 
-        Cant create instance of type parameter directly
-            new  T();   // not allowed
 
-        Not compatible with primitive types
-            List<int> ids = new ArrayList<>();    //Not allowed
+Static fields of type is not allowed
+```java
+ private static T member; //This is not allowed
+ ```
 
-        Generic Exception class is not allowed
-            public class GenericException<T> extends Exception {}
+Cant create instance of type parameter directly
+```java
+new  T();   // not allowed
+```
+
+Not compatible with primitive types
+```java
+List<int> ids = new ArrayList<>();    //Not allowed
+```
+
+Generic Exception class is not allowed
+```java
+public class GenericException<T> extends Exception {}
+```
 
 ### 9 Early and late binding
 
-        Binding is the association of method call to the method defination. It can happen at
-        compile time as well as at run time.
-        Late binding gave us the flexibility of  changing algorithm at run-time
-        Example of early binding is simple method call, overloaded method, static, final methods
-        Examples of  late binding is overriding(run time polymorphism)
+Binding is the association of method call to the method defination. It can happen at
+compile time as well as at run time.
+Late binding gave us the flexibility of  changing algorithm at run-time
+Example of early binding is simple method call, overloaded method, static, final methods
+Examples of  late binding is overriding(run time polymorphism)
 
 ### 10 Types of Reference in Java
 
-    Strong reference :
-        There object are not garbage collected as long as they are strongly reachable through a chain
-        of strong references. Strong reference refers to the reference from stack to the actual object in
-        heap.
-            eg : StringBuilder builder = new StringBuilder();
+Strong reference :
+There object are not garbage collected as long as they are strongly reachable through a chain
+of strong references. Strong reference refers to the reference from stack to the actual object in
+heap.
+example :
+```java
+ StringBuilder builder = new StringBuilder();
+ ```
 
-    Weak reference :
-        These objects will surely be garbage collected when ever the next garbage collector process runs.
-            eg: WeakReference<StringBuilder> reference = new WeakReference<>(new StringBuilder());
+Weak reference :
+These objects will surely be garbage collected when ever the next garbage collector process runs.
+eg:
+```java
+WeakReference<StringBuilder> reference = new WeakReference<>(new StringBuilder());
+```
 
-    Soft reference :
-        These objects will only be garbage collected when there is no more memory left. Java guarantees
-        that all soft refence will garbage collectedd before it throws OutOfMemoryError exception.
-            eg SoftReference<StringBuilder> reference = new SoftReference<>(new StringBuilder());
+Soft reference :
+These objects will only be garbage collected when there is no more memory left. Java guarantees
+that all soft refence will garbage collectedd before it throws OutOfMemoryError exception.
+eg:
+```java
+SoftReference<StringBuilder> reference = new SoftReference<>(new StringBuilder());
+```
 
-    Phantom reference :
-        The referent is never accessible directly through the API and this is why we need a reference queue
-         to work with this type of references.
+Phantom reference :
+The referent is never accessible directly through the API and this is why we need a reference queue
+to work with this type of references.
 
 
 ### 11  super() and super
 
-    Difference between super and super()
-    super is used to call the parent class methods and variables like
-        System.out.println(super.x);   // it will print value of x which is defined in super class
-        super.method();
-    for interface default variables and methods we need to add Interface name as well like :
-        InterfaceName.super.variableName;
-        InterfaceName.super.methodName();
-     super() is used to call the parent class constructor. it is used in child class  constructor
-     as a mandatory first line.
-    You want to create a object of the current class, but there may be a couple of properties that
-    the current class is acquiring from the parent class through inheritance for which we need to
-    first have those values initialised and created in the parent class object and super() in this
-    case does it for the current class by calling the constructor of the parent class.
-    This makes sure that the current object creation is done consistently and which is why we need
-    to have it as the first statement
+Difference between super and super()
+super is used to call the parent class methods and variables like
+```java
+System.out.println(super.x);   // it will print value of x which is defined in super class
+super.method();
+```
+for interface default variables and methods we need to add Interface name as well like :
+```java
+InterfaceName.super.variableName;
+InterfaceName.super.methodName();
+````
+super() is used to call the parent class constructor. it is used in child class  constructor
+as a mandatory first line.
+You want to create a object of the current class, but there may be a couple of properties that
+the current class is acquiring from the parent class through inheritance for which we need to
+first have those values initialised and created in the parent class object and super() in this
+case does it for the current class by calling the constructor of the parent class.
+This makes sure that the current object creation is done consistently and which is why we need
+to have it as the first statement
 
 
 ### 12 instanceOf
 
-  The java instanceof operator is used to test whether the object is an instance of the specified
-  type (class or subclass or interface).
+The java instanceof operator is used to test whether the object is an instance of the specified
+type (class or subclass or interface).
 
-  instanceOf is mostly used for downcasting like :
-
-            if(p instanceof B){
-            B b=(B)p;      //Downcasting
-            b.b();
-            }
+instanceOf is mostly used for downcasting like :
+```java
+if(p instanceof B){
+B b=(B)p;      //Downcasting
+b.b();
+}
+```
 
 ### 13 Equals and HashCode
-  Java equals() and hashCode() methods are present in Object class. So every java class gets the
-  default implementation of equals() and hashCode().
-
-        public boolean equals(Object obj) {
-                return (this == obj);
-            }
-
-
-        @HotSpotIntrinsicCandidate
-        public native int hashCode();
+Java equals() and hashCode() methods are present in Object class. So every java class gets the
+default implementation of equals() and hashCode().
+```java
+public boolean equals(Object obj) {
+return (this == obj);
+}
 
 
-  If two objects are equal according to equals() method, then their hash code must be same.
+@HotSpotIntrinsicCandidate
+public native int hashCode();
+```
 
-  If two objects are unequal according to equals() method, their hash code are not required to be different.
 
-  Java hashCode() and equals() method are used in Hash table based implementations in java for storing and
-  retrieving data
+If two objects are equal according to equals() method, then their hash code must be same.
 
-  Use same properties in both equals() and hashCode() method implementations, so that their contract doesn’t
-  violate when any properties is updated.
+If two objects are unequal according to equals() method, their hash code are not required to be different.
 
-          @Override
-            public boolean equals(Object o) {
-                if (this == o) return true;
-                if (o == null || getClass() != o.getClass()) return false;
-                EqualsAndHashCodeExample that = (EqualsAndHashCodeExample) o;
-                return Objects.equals(firstName, that.firstName) &&
-                        Objects.equals(lastName, that.lastName) &&
-                        Objects.equals(age, that.age);
-            }
+Java hashCode() and equals() method are used in Hash table based implementations in java for storing and
+retrieving data
 
-            @Override
-            public int hashCode() {
+Use same properties in both equals() and hashCode() method implementations, so that their contract doesn’t
+violate when any properties is updated.
 
-                return Objects.hash(firstName, lastName, age);
-            }
+```java
+@Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    EqualsAndHashCodeExample that = (EqualsAndHashCodeExample) o;
+    return Objects.equals(firstName, that.firstName) &&
+            Objects.equals(lastName, that.lastName) &&
+            Objects.equals(age, that.age);
+}
 
-  First identify the “Bucket” to use using the “key” hash code.
-  If there are no objects present in the bucket with same hash code, then add the object for put operation and return null for get operation.
-  If there are other objects in the bucket with same hash code, then “key” equals method comes into play.
-  If equals() return true and it’s a put operation, then object value is overridden.
-  If equals() return false and it’s a put operation, then new entry is added to the bucket.
-  If equals() return true and it’s a get operation, then object value is returned.
-  If equals() return false and it’s a get operation, then null is returned.
+@Override
+public int hashCode() {
+
+    return Objects.hash(firstName, lastName, age);
+}
+
+```
+
+First identify the “Bucket” to use using the “key” hash code.
+If there are no objects present in the bucket with same hash code, then add the object for put operation and return null for get operation.
+If there are other objects in the bucket with same hash code, then “key” equals method comes into play.
+If equals() return true and it’s a put operation, then object value is overridden.
+If equals() return false and it’s a put operation, then new entry is added to the bucket.
+If equals() return true and it’s a get operation, then object value is returned.
+If equals() return false and it’s a get operation, then null is returned.
 
 
 ### 14. Does Java "pass-by-reference" or "pass-by-value"?
