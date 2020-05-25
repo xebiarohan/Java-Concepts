@@ -249,20 +249,79 @@ Difference between Strategy and Factory
     the creational pattern.
 
 ### 8 Generics
+Generics is one of the most challenging concept to put your head around when you first time work with it, But its one of the most used concept as well.
 
-“Java Generics are a language feature that allows for definition and use of generic
+So lets understand what exactly is generics.
+As per one of the definations “Java Generics is a language feature that allows for definition and use of generic
 types and methods.”
 
-Generics add type safety at compile time.
+If you did not get it dont worry we will discuss it will the help of examples.
 
-It helps to make Collection Object homogeneous
+#### Why Generics, what were the issues ?
+So lets first discuss why we need Generics.
 
-Saves from ClassCastException
+##### 1. Type safety
+So before Generics this is how we creates list
+```java
+List integers = new ArrayList();
+integers.add(1);
+integers.add(2);
+```
+Here we are adding integers in list but we can add any other value without getting any compile time error
+```java
+integers.add("three");
+```
+So when we extract this data we are not 100% sure that we will get back integer.
+```java
+        for(int i=0;i<list.size();i++) {
+            if(list.get(i) == (Integer)list.get(i)) {
+                System.out.println(2*(Integer)list.get(i));
+            } else {
+                System.out.println(1);
+                throw new IllegalArgumentException("Value is not integer");
+            }
+        }
+```
 
-Type Erasure : It means all the extra information added using generics will be removed
-at compile time during byte code generation. It is also required for backward compatibility.
+##### 2. Hetrogeneour values
+As we mentioned in 1st point also. we can add hetrogeneous values. So when we pass our collection to 3rd party library, our collection is not type safe. In library anyone can add any kind of data. 
+```java
+    public static void main(String[] args) {
+        Set data = new HashSet();
+        Set updatedData = getData(data);
+    }
+    
 
-A class is Generic if it declares 1 or more type parameter like
+    public static Set getData(Set data) {
+        data.add(1);
+        data.add("Two");
+        data.add(new ArrayList<>());
+        return data;
+    }
+```
+
+Thats where Generics comes into picture. Generics add compile time checks which solves both the issues. Compile time checks help to prevent adding hetrogeneous data in collection. And we are sure that we have same type of data, So we need not check the type while extracting.
+
+```java
+List<Integer> integers = new ArrayList<>();
+integers.add(1);
+integers.add(2);
+integers.add("three");  // compile time exception
+```
+
+#### Type Erasure
+Generics have a special property called Type erasure which means all the extra information added using generics will be removed at compile time during byte code generation. It is also required for backward compatibility.
+
+So after compilation the byte code of these 2 statements are same
+
+```java
+List<Integer> list1 = new ArrayList<>();
+
+List list2 = new ArrayList<>();
+```
+
+#### Generic class
+A class is *Generic* if it declares 1 or more type parameter. Type parameter itself is not a data type but can act as a place holder for any other datatype.
 
 ```java
 public class GenericClass<T,E> {
@@ -270,33 +329,56 @@ private T key;
 private E value;
 }
 ```
+In this we have 2 type parameters, T and E.
 
-Here generic variables in class name is equal to the variables type parameter declared
-in class (T and E).
+Now we can use this class with any data type like :
 
-Now we can use this class as
 ```java
-GenericClass<Integer,Integer> integers = new GenericClass();
-GenericClass<String,Integer> strings = new GenericClass();
+GenericClass<Integer,Integer> integers = new GenericClass<>();
+GenericClass<String,Integer> strings = new GenericClass<>();
 ```
 
+#### Generic Interface
 Same rules apply for the interface as well
+
 ```java
 public interface GenericInterface<T,E> {
     T  firstMethod();
     E  secondMethod();
 }
 ```
+The above code represents that its a general class having 2 type parameter. The first type parameter is the return type of the first method and the second type parameter is the return type of the second method. So we can implement it as
 
+```java
+public class SampleClass implements GenericInterface<Integer,String> {
+    @Override
+    public Integer firstMethod() {
+        return null;
+    }
+
+    @Override
+    public String secondMethod() {
+        return null;
+    }
+}
+
+```
+Here we used Integer and String, but we can use any other data type as well.
+
+#### Generic methods
+In previous examples we saw whole generic class, But we can have a specific generic method as well in non-generic class.
 We can define generic methods inside non-generic class and the scope of type variable is
 inside the method only.
+
 ```java
  public <T,E> void genericMethod(T key,E value) {
         System.out.println(key);
-        System.out.println(E);
+        System.out.println(value);
 
     }
 ```
+If you notice we have a extra piece of code in this method **<T,E>**. This is the same indicator which we use in any class defination to indicate that how many type parameter this method or class will use.
+
 
 Type parameter should be defined in front of return type of method if generic method is
 not a part of generic class.
