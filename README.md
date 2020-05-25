@@ -374,17 +374,27 @@ inside the method only.
  public <T,E> void genericMethod(T key,E value) {
         System.out.println(key);
         System.out.println(value);
-
     }
 ```
-If you notice we have a extra piece of code in this method **<T,E>**. This is the same indicator which we use in any class defination to indicate that how many type parameter this method or class will use.
+If you notice we have a extra piece of code in this method **<T,E>**. This is the same indicator which we use in any class defination to indicate that how many type parameter this method or class will use. 
+We have to add this indicator in generic method only when its a part of non-generic class.
 
+Both static and not static methods follows the same generic rules.
 
-Type parameter should be defined in front of return type of method if generic method is
-not a part of generic class.
+```java
+    public static <T> Map<T,T> staticGenericMethod(T val1,T val2) {
+       Map<T,T> map = new HashMap<>();
+       map.put(val1,val2);
+       return map;
+    }
 
-They can static as well as non-static methods
-
+    public <T> Map<T,T> staticGenericMethod(T val1,T val2) {
+       Map<T,T> map = new HashMap<>();
+       map.put(val1,val2);
+       return map;
+    }
+```
+#### Generic Constructor
 Generic constructor follows the same rule as other methods.They can come inside Generic class
 or can be in any other class also.
 ```java
@@ -397,15 +407,19 @@ public class ClassWithGenericConstructor<T> {
         this.value = value;
     }
 }
+```
+In the above example we have generic constructor in generic class.
 
+```java
 public class ClassWithGenericConstructor {
     public <T> ClassWithGenericConstructor(T key,T value) {
         System.out.println(key);
     }
 }
 ```
+In this example we have generic constructor in non-generic class. As we discussed above also we have **<T>** in method declatation because we are in non-generic class.
 
-Generics in Array :
+#### Generics in Array :
 Array preserves their type information means it will throw error if we add different type
 of data into it and Generics use type erasure, which is contradictory So we cannot instantiate
 a generic array in Java
