@@ -420,9 +420,8 @@ public class ClassWithGenericConstructor {
 In this example we have generic constructor in non-generic class. As we discussed above also we have **<T>** in method declatation because we are in non-generic class.
 
 #### Generics in Array :
-Array preserves their type information means it will throw error if we add different type
-of data into it and Generics use type erasure, which is contradictory So we cannot instantiate
-a generic array in Java
+Generics and the way array works contradicts each other. Array preserves their type information means it will throw error if we add different type of data into it and Generics use type erasure, which is contradictory So we cannot instantiate
+a generic array in Java.
 
 ```java
 public class GenericArray<T> {
@@ -434,12 +433,12 @@ public class GenericArray<T> {
 }
 ```
 
-WildCards in Generics
-WildCards defines unknown data types in Generics, Using it with super and extends is used
-to restrict the types used in Generic class like
-
+#### WildCards
+WildCards defines unknown data types in Generics, Using it with **super** and **extends** is used
+to restrict the types used in Generic class.
 
 declarations :
+
 ```java
 Collection<?> coll = new ArrayList<String>();
 List<? extends Number> list = new ArrayList<Long>();
@@ -448,47 +447,58 @@ Pair<String,?> pair = new Pair<String,Integer>();
 
 WildCards are of 2 types bounded and unbounded
 
-Unbounded in which we can add any type like :
+##### Unbounded
+Unbounded in which we can add any data type.
+
 ```java
 Collection<?> coll = new ArrayList<String>();
 ```
+Here in the right side we used String, but we can add any other data type as well. There is no restrictions.
 
-In bounded we restrict the type which we can use using extends and super.
+##### Bounded
+In bounded we restrict the data types using extends and super.
+
+###### extends
 In extends we can use class which extends the given class like
+
 ```java
 List<? extends Number> list = new ArrayList<Long>();
 ```
 here we can use any class which extends Number like Long,Integer,Double etc
 
-In super we can use classes which is a super class is given class
+###### super
+In super we can use classes which is a super class of given class
 ```java
      List<? super Integer> list = new ArrayList<Number>();
 ```     
 here we can use any class which is a super class of Integer
 
 
-what is not allowed in Generics
+#### Limitations of Generics
 
+1. Static fields of parameterised type is not allowed
 
-Static fields of type is not allowed
 ```java
  private static T member; //This is not allowed
  ```
 
-Cant create instance of type parameter directly
+2. We cannot create instance of type parameter directly
 ```java
 new  T();   // not allowed
 ```
 
-Not compatible with primitive types
+3. Not compatible with primitive types
 ```java
 List<int> ids = new ArrayList<>();    //Not allowed
 ```
 
-Generic Exception class is not allowed
+4. Generic Exception class is not allowed
 ```java
 public class GenericException<T> extends Exception {}
 ```
+
+
+
 
 ### 9 Early and late binding
 
